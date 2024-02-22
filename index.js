@@ -53,10 +53,10 @@ app.get('/service', (req, res) => {
 });
 app.get('/serviceprovider/by/:id', (req, res) => {
     const serviceid = req.params.id;
-    connection.query('SELECT service_provider.provider_id,provider_phone,service_provider.provider_fname,service_provider.provider_lname,service_provider.city,service_provider.address,service.servcie_name FROM service_provider INNER JOIN service ON service_provider.service_id = service.servcie_id WHERE service_provider.provider_id=? ', [serviceid], (err, result) => {
+    connection.query('SELECT service_provider.provider_id,provider_phone,service_provider.provider_fname,service_provider.provider_lname,service_provider.city,service_provider.address,service.servcie_name FROM service_provider INNER JOIN service ON service_provider.service_id = service.servcie_id WHERE service_provider.service_id=? ', [serviceid], (err, result) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Error fetching categories' });
+            res.status(500).json({ error: 'Error fetching provider' });
         }
         if (result.length == 0) {
             res.status(404).send('worker not found');
@@ -70,7 +70,7 @@ app.get('/serviceprovider/:id', (req, res) => {
     connection.query('SELECT provider_id,provider_fname,provider_lname, provider_phone FROM service_provider WHERE service_provider.service_id=? ', [serviceid], (err, result) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Error fetching categories' });
+            res.status(500).json({ error: 'Error fetching provider' });
         }
         if (result.length == 0) {
             res.status(404).send('worker not found');
@@ -79,10 +79,10 @@ app.get('/serviceprovider/:id', (req, res) => {
         res.json(result);
     });
     app.use(bodyParser_1.default.json());
-    app.post('/signup/user', async (req, res) => {
-        const { fname, lastname, phone,city,address, pass,email   } = req.body
+    app.post('/signup', async (req, res) => {
+        const { fname, lastname, phone,city,address, pass,email } = req.body
         try {
-            conn.query('SELECT * FROM custoumer WHERE email =?'[email], (err, result) => {
+            connection.query('SELECT * FROM custoumer WHERE email =?'[email], (err, result) => {
                 if (err) {
                     console.error(err);
                     return res.status(500).send({ error: 'servier error' });
@@ -91,7 +91,7 @@ app.get('/serviceprovider/:id', (req, res) => {
                     return res.status(400).json({ error: 'email all readt exist' });
                 }
             });
-            conn.query('SELECT * FROM custoumer WHERE phone =?'[phone], (err, result) => {
+            connection.query('SELECT * FROM custoumer WHERE phone =?'[phone], (err, result) => {
                 if (err) {
                     console.error(err);
                     return res.status(500).send({ error: 'servier error' });
@@ -105,7 +105,7 @@ app.get('/serviceprovider/:id', (req, res) => {
             const solt = 15;
             const hashpass = await bcrypt.hash(pass, solt);
             var sql ='INSERT INTO customer (customer_fname,customer_lname,phone_num,city,address,pass,email) VALUES ?'
-            conn.query(sql,[fname, lastname, phone,city,address,pass,email],(err,results)=>{
+            connection.query(sql,[fname, lastname, phone,city,address,hashpass,email],(err,results)=>{
                 if(err){
                     console.error(err);
                     res.status(500).json({error:"servier errore "});
@@ -115,7 +115,7 @@ app.get('/serviceprovider/:id', (req, res) => {
     
         }
         catch(err){
-            console.error('error:',err)
+            console.error('error:')
         }
     }
     )
@@ -123,3 +123,5 @@ app.get('/serviceprovider/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+    
