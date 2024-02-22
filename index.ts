@@ -2,14 +2,15 @@
 import express,{ Request, Response } from 'express';
 import {conn} from './connection';
 //import { Sequelize } from 'sequelize';
-const Sequelize =require('sequelize')
+import Sequelize from 'sequelize';
 const app = express();
-// import apisignup from './signupApi'
+ import apisignup from './signupApi'
+ import login_api from './login_api';
 // import Service from './moduls/serive';
 
 
 
-console.log(conn)
+
 
 app.get('/service', (req: Request, res: Response) => {
   
@@ -42,7 +43,7 @@ res.json(results);
 
 app.get('/serviceprovider/:id',(req:Request,res:Response)=>{
     const serviceid =req.params.id;
-   console.log(conn)
+   
     conn.query('SELECT provider_fname,provider_lname, provider_phone FROM service_provider WHERE service_provider.service_id=? ' ,[serviceid],(err,result)=>{
         if(err){
             console.error(err);
@@ -72,7 +73,8 @@ app.get('/serviceprovider/details/:id/status',(req:Request,res:Response)=>{
       res.json(result);
   })
 })
-// app.use(apisignup);
+ app.use(apisignup);
+ app.use(login_api);
 
 const port = process.env.port||5000;
 app.listen(port, () => {
