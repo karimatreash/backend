@@ -28,7 +28,8 @@ const apisignup = app.post('/signup/user', async (req: Request, res: Response) =
                 }
                 if (result.length > 0) {
                     return res.status(400).json({ error: 'phone already exists' });
-                }
+                };
+                
 
                 // Hash the password
                 const saltRounds = 15;
@@ -37,6 +38,12 @@ const apisignup = app.post('/signup/user', async (req: Request, res: Response) =
                         console.error(err);
                         return res.status(500).send({ error: 'server error' });
                     };
+                    if(address==null){
+                        return res.status(404).json({error:'address empty'})
+                    }
+                    if( pass<6){
+                        return res.status(404).json({error:'the password should be gretar than 6 '})
+                    }
 
                     // Insert user into database
                     const sql = 'INSERT INTO customer (customer_fname, customer_lname, phone_num, city, address, pass, email) VALUES (?, ?, ?, ?, ?, ?, ?)';
