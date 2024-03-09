@@ -1,5 +1,5 @@
 import express, { Response, Request } from "express";
-import { conn } from "./connection";
+import { conn } from "../connection";
 import bcrypt from 'bcrypt'
 import bodyParser from 'body-parser';
 
