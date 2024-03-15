@@ -24,13 +24,15 @@ const login_api = app.post('/login', async (req: Request, res: Response) => {
             }
             
             if (result.length === 0) {
-                return res.status(401).json("email or password wrong ");
+                return res.status(400).json("email or password wrong ");
             }
 
             const user = result[0];
             const match = await bcrypt.compare(password, user.pass);
             if (!match) {
-                return res.status(401).json("email or password wrong");
+                console.log("error")
+                return res.status(400).json("email or password wrong");
+                
             }
             res.status(200).json({ message: 'Login successful', user: { email: user.email,fname:user.customer_fname,id:user.customer_id} });
         });

@@ -1,14 +1,20 @@
 import express, { Response, Request } from "express";
-import { conn } from "./connection";
+import { conn } from "../connection";
 import bcrypt from 'bcrypt'
 import bodyParser = require("body-parser");
 
 const app = express()
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }))
-const apisignup = app.post('/signup/user', async (req: Request, res: Response) => {
-    const { fname, lastname, phone, city, address, pass, email } = req.body;
+const apisignup = app.post('/signup/provider', async (req: Request, res: Response) => {
+    const { fname, lastname, phone, city, address, pass, email,serviceid } = req.body;
     console.log(req.body);
+    if(!fname|| !lastname|| !phone|| !city|| !address|| !pass|| !email||!serviceid){
+        res.status(500).json({error:"all data is requesrd"})
+    }
+    if(!email.includes("@")){
+        res.status(400).json('the emil should be containt @')
+    }
     try {
         // Check if email already exists
         conn.query('SELECT * FROM customer WHERE email = ?', [email], (err, result) => {
@@ -28,8 +34,7 @@ const apisignup = app.post('/signup/user', async (req: Request, res: Response) =
                 }
                 if (result.length > 0) {
                     return res.status(400).json({ error: 'phone already exists' });
-                };
-                
+                }
 
                 // Hash the password
                 const saltRounds = 15;
@@ -38,16 +43,10 @@ const apisignup = app.post('/signup/user', async (req: Request, res: Response) =
                         console.error(err);
                         return res.status(500).send({ error: 'server error' });
                     };
-                    if(address==null){
-                        return res.status(404).json({error:'address empty'})
-                    }
-                    if( pass<6){
-                        return res.status(404).json({error:'the password should be gretar than 6 '})
-                    }
 
                     // Insert user into database
-                    const sql = 'INSERT INTO customer (customer_fname, customer_lname, phone_num, city, address, pass, email) VALUES (?, ?, ?, ?, ?, ?, ?)';
-                    conn.query(sql, [fname, lastname, phone, city, address, hash, email], (err, results) => {
+                    const sql = 'INSERT INTO service_provider (provider_fname, provider_lname, provider_phone, city, address, pass, email,\\\service_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
+                    conn.query(sql, [fname, lastname, phone, city, address, hash, email,serviceid], (err, results) => {
                         if (err) {
                             console.error(err);
                             return res.status(500).json({ error: "server error" });

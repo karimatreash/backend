@@ -1,4 +1,5 @@
 import mysql from 'mysql';
+import calculateAndSetRatio from './sumrating';
 const conn = mysql.createConnection({
    host: 'localhost',
    user: 'root',
@@ -13,6 +14,7 @@ conn.connect((err) => {
          ;
    }
    console.log('connected to database 4');
+   calculateAndSetRatio();
 })
 
 export {conn};

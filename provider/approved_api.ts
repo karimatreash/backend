@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { conn } from './connection'; 
+import { conn } from '../connection'; 
 
 const app = express();
 

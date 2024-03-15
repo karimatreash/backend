@@ -1,12 +1,14 @@
 import express from 'express';
 import provider_api from './cotomer/provider';
-import apisignup from './signupApi'
+import apisignup from './cotomer/signupApi'
  import login_api from './cotomer/login_api';
  import service_api from './service';
  import booking_Api from './cotomer/booking';
  import requests from './cotomer/requset';
-import approval from './approved_api';
+import approval from './provider/approved_api';
 import get_apoointent from './cotomer/appoinget';
+import raiting_api from './cotomer/ratingprovider';
+import getappointment from './provider/getappointment';
 
 // import Service from './moduls/serive';
 const app = express();
@@ -18,6 +20,8 @@ app.use(apisignup);
  app.use(requests);
  app.use(approval)
  app.use(get_apoointent)
+ app.use(raiting_api)
+ app.use(getappointment)
 const port = process.env.port||5000;
 app.listen(port, () => {
   console.log(`Server is running on port `);
