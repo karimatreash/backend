@@ -9,6 +9,7 @@ import approval from './provider/approved_api';
 import get_apoointent from './cotomer/appoinget';
 import raiting_api from './cotomer/ratingprovider';
 import getappointment from './provider/getappointment';
+import GetRquest_provider from './provider/Get_request_provider';
 
 // import Service from './moduls/serive';
 const app = express();
@@ -22,6 +23,7 @@ app.use(apisignup);
  app.use(get_apoointent)
  app.use(raiting_api)
  app.use(getappointment)
+ app.use(GetRquest_provider)
 const port = process.env.port||5000;
 app.listen(port, () => {
   console.log(`Server is running on port `);
