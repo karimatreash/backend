@@ -10,6 +10,10 @@ import get_apoointent from './cotomer/appoinget';
 import raiting_api from './cotomer/ratingprovider';
 import getappointment from './provider/getappointment';
 import GetRquest_provider from './provider/Get_request_provider';
+import { verify } from 'crypto';
+import verifyapi from './cotomer/verfyotp';
+import new_date from './provider/SugestedNewDate';
+
 
 // import Service from './moduls/serive';
 const app = express();
@@ -24,6 +28,8 @@ app.use(apisignup);
  app.use(raiting_api)
  app.use(getappointment)
  app.use(GetRquest_provider)
+ app.use(verifyapi)
+app.use(new_date)
 const port = process.env.port||5000;
 app.listen(port, () => {
   console.log(`Server is running on port `);

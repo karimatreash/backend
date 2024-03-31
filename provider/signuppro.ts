@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import bodyParser = require("body-parser");
 
 const app = express()
-app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.json()) 
 app.use(bodyParser.urlencoded({ extended: true }))
 const apisignup = app.post('/signup/provider', async (req: Request, res: Response) => {
     const { fname, lastname, phone, city, address, pass, email,serviceid } = req.body;
@@ -16,7 +16,7 @@ const apisignup = app.post('/signup/provider', async (req: Request, res: Respons
         res.status(400).json('the emil should be containt @')
     }
     try {
-        // Check if email already exists
+        
         conn.query('SELECT * FROM customer WHERE email = ?', [email], (err, result) => {
             if (err) {
                 console.error(err);
@@ -26,7 +26,7 @@ const apisignup = app.post('/signup/provider', async (req: Request, res: Respons
                 return res.status(400).json({ error: 'email already exists' });
             }
 
-            // Check if phone already exists
+            
             conn.query('SELECT * FROM customer WHERE phone_num = ?', [phone], (err, result) => {
                 if (err) {
                     console.error(err);
@@ -36,7 +36,7 @@ const apisignup = app.post('/signup/provider', async (req: Request, res: Respons
                     return res.status(400).json({ error: 'phone already exists' });
                 }
 
-                // Hash the password
+                
                 const saltRounds = 15;
                 bcrypt.hash(pass, saltRounds, async (err, hash) => {
                     if (err) {
@@ -44,7 +44,7 @@ const apisignup = app.post('/signup/provider', async (req: Request, res: Respons
                         return res.status(500).send({ error: 'server error' });
                     };
 
-                    // Insert user into database
+                    
                     const sql = 'INSERT INTO service_provider (provider_fname, provider_lname, provider_phone, city, address, pass, email,\\\service_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
                     conn.query(sql, [fname, lastname, phone, city, address, hash, email,serviceid], (err, results) => {
                         if (err) {
