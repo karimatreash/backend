@@ -13,6 +13,7 @@ import GetRquest_provider from './provider/Get_request_provider';
 import { verify } from 'crypto';
 import verifyapi from './cotomer/verfyotp';
 import new_date from './provider/SugestedNewDate';
+import apisignup_P from './provider/signuppro';
 
 
 // import Service from './moduls/serive';
@@ -30,6 +31,7 @@ app.use(apisignup);
  app.use(GetRquest_provider)
  app.use(verifyapi)
 app.use(new_date)
+app.use(apisignup_P)
 const port = process.env.port||5000;
 app.listen(port, () => {
   console.log(`Server is running on port `);

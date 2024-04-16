@@ -34,7 +34,7 @@ const login_api = app.post('/login', async (req: Request, res: Response) => {
                 return res.status(400).json("email or password wrong");
                 
             }
-            res.status(200).json({ message: 'Login successful', user: { email: user.email,fname:user.customer_fname,id:user.customer_id} });
+            res.status(200).json({ message: 'Login successful', user: { email: user.email,fname:user.customer_fname,id:user.customer_id ,isvaled:user.status_verifycode} });
         });
     } catch (err) {
         console.error('error:', err);
