@@ -36,6 +36,7 @@ const login_api = app.post('/login', async (req: Request, res: Response) => {
             }
             res.status(200).json({ message: 'Login successful', user: { email: user.email,fname:user.customer_fname,id:user.customer_id ,isvaled:user.status_verifycode} });
         });
+        
     } catch (err) {
         console.error('error:', err);
         res.status(500).json({ error: 'server error' });

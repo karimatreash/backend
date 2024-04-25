@@ -1,6 +1,6 @@
 import mysql from 'mysql';
-import calculateAndSetRatio from './sumrating';
-import calculateAndSetcout from './coutn_request';
+import calculateAndSetRatio from './func/sumrating';
+import calculateAndSetcout from './func/coutn_request';
 const conn = mysql.createConnection({
    host: 'localhost',
    user: 'root',

@@ -81,7 +81,7 @@ import express, { Response, Request } from "express";
 import { conn } from "../connection";
 import bcrypt from 'bcrypt'
 import bodyParser = require("body-parser");
-import sendEmail from "../sendemail";
+import sendEmail from "../func/sendemail";
 
 const app = express()
 var verifycode = Math.floor(1000 + Math.random() * 9000);

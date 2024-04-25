@@ -23,6 +23,11 @@ const raiting_api = app.post('/raiting', async (req: Request, res: Response) => 
     const sql = 'INSERT INTO review (reviewer_id, description, user_id, raiting_value) VALUES (?,?,?,?)';
     try {
         const result = await conn.query(sql, [reviewer_id, description, user_id, raiting_value]);
+        await conn.query(`UPDATE appointment
+        SET status = 1 
+        WHERE  provider_id =?
+        and customer_id = ? 
+        `,[user_id,reviewer_id]);
         res.status(200).json('raiting successful');
     } catch (err) {
         console.error(error);

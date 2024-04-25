@@ -14,14 +14,20 @@ import { verify } from 'crypto';
 import verifyapi from './cotomer/verfyotp';
 import new_date from './provider/SugestedNewDate';
 import apisignup_P from './provider/signuppro';
+import login_provider from './provider/login_povider';
+import verify_otp from './func/OTP';
+import login from './func/login_func'
+import loginall from './func/login_func';
+import get_arch_provider from './provider/archiv_provider';
 
 
 // import Service from './moduls/serive';
+
 const app = express();
 app.use(service_api);
 app.use(provider_api)
 app.use(apisignup);
- app.use(login_api);
+  // app.use(login_api);
  app.use(booking_Api);
  app.use(requests);
  app.use(approval)
@@ -29,9 +35,13 @@ app.use(apisignup);
  app.use(raiting_api)
  app.use(getappointment)
  app.use(GetRquest_provider)
- app.use(verifyapi)
+//  app.use(verifyapi)
 app.use(new_date)
 app.use(apisignup_P)
+// app.use(login_provider)
+app.use(verify_otp)
+ app.use(loginall)
+ app.use(get_arch_provider)
 const port = process.env.port||5000;
 app.listen(port, () => {
   console.log(`Server is running on port `);

@@ -23,3 +23,4 @@ const Service =sequelize.define('service',{
     timestamp:false
   });
   export default Service;
+  
