@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const approval = app.post('/rejectrequest/:id', (req: Request, res: Response) => {
+const reject = app.post('/rejectrequest/:id', (req: Request, res: Response) => {
  
   if (!req.params || !req.params.id) {
     return res.status(400).json({ error: 'Request ID is missing in the URL' });
@@ -40,4 +40,4 @@ const approval = app.post('/rejectrequest/:id', (req: Request, res: Response) =>
     });
   });
 
-export default approval;
+export default reject;

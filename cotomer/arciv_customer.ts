@@ -50,7 +50,7 @@ JOIN
 service t3 ON t1.servcie_id = t3.servcie_id
 WHERE 
 t1.status = 4 AND t1.provider_id = ?;`
-    conn.query(arci_customer,[providerId,providerId],(err,result)=>{
+    conn.query(arci_cutsomer,[providerId,providerId],(err,result)=>{
         if(err){
             console.error(err)
             return res.status(500).json({ error: 'error in service' })
@@ -60,6 +60,7 @@ t1.status = 4 AND t1.provider_id = ?;`
             res.status(400).json({ message: "You don't have any appointments" })
 
         }
+        
         res.json(result);
     })
 })
