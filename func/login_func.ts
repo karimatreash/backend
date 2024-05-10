@@ -227,7 +227,7 @@ const loginUser = async (email: string, password: string) => {
             });
         });
        
-       if(password==provider.pass){
+       if(password==provider?.pass){
         return { user: provider, userType: 1 };
 
        }
@@ -252,16 +252,19 @@ const generateToken = (userData: any) => {
     let userId;
     let fname;
     let lname;
+    let isvalid;
     let additionalData = {};
 
     if (userType === 0) {
         userId = user.customer_id;
         fname = user.customer_fname;
         lname = user.customer_lname;
+        isvalid=user.status_verifycode
     } else if (userType === 1) {
         userId = user.provider_id;
         fname = user.provider_fname;
         lname = user.provider_lname;
+        isvalid=user.status_verifycode
         additionalData = {
             rating: user.rating,
             count: user.count_requset
@@ -272,7 +275,7 @@ const generateToken = (userData: any) => {
 
  const secretKey = crypto.randomBytes(32).toString('hex');
 
-    const token = jwt.sign({ userId, email: user.email, fname, lname, userType, ...additionalData }, secretKey, { expiresIn: '500h' });
+    const token = jwt.sign({ userId, email: user.email, fname, lname, userType,isvalid, ...additionalData }, secretKey, { expiresIn: '500h' });
     return token;
 }
 

@@ -15,7 +15,26 @@ const get_appointment = app.get('/appointment/user/:id', (req: Request, res: Res
     return res.status(400).json({ error: 'Invalid user ID' });
   }
 
-  const sql = 'SELECT t1.appoi_id, t1.date, t1.description, t2.provider_fname, t2.provider_lname, t2.city, t2.provider_phone, t2.address, t3.servcie_name FROM appointment t1 JOIN service_provider t2 ON t1.provider_id = t2.provider_id JOIN service t3 ON t1.servcie_id = t3.servcie_id WHERE t1.customer_id = ?';
+  const sql = `SELECT
+  t1.appoi_id,
+  t1.date,
+  t1.description,
+  t1.status
+  t2.provider_fname,
+  t2.provider_lname,
+  t2.city,
+  t2.provider_phone,
+  t2.address,
+  t3.servcie_name,
+  t4.disblaystats
+  
+  FROM appointment t1
+  JOIN service_provider t2 ON t1.provider_id = t2.provider_id
+  JOIN service t3 ON t1.servcie_id = t3.servcie_id 
+  JOIN status t4 on t1.status = t4.id_status
+  
+  
+  WHERE t1.customer_id = ?`
   conn.query(sql, [userId], (err, result) => {
     if (err) {
       console.error(err);

@@ -26,7 +26,7 @@ const booking_Api = app.post('/booking', async (req: Request, res: Response) => 
             return res.status(400).json({ error: 'You already have a booking for this date' });
         }
         // If no existing booking, proceed with insertion
-        const sql = 'INSERT INTO service_request (service_id, provider_id, customer_id, date_request, description) VALUES (?, ?, ?, ?, ?)';
+        const sql = 'INSERT INTO service_request (servcie_id, provider_id, customer_id, date_request, description) VALUES (?, ?, ?, ?, ?)';
         try {
             const insertionResult = await conn.query(sql, [serviceid, providerid, customerid, date, description]);
             res.status(200).json({ message: "Booking successful" });

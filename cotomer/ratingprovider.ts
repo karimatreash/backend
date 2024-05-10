@@ -24,7 +24,7 @@ const raiting_api = app.post('/raiting', async (req: Request, res: Response) => 
     try {
         const result = await conn.query(sql, [reviewer_id, description, user_id, raiting_value]);
         await conn.query(`UPDATE appointment
-        SET status = 1 
+        SET status = 4 
         WHERE  provider_id =?
         and customer_id = ? 
         `,[user_id,reviewer_id]);

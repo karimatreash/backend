@@ -27,13 +27,16 @@ const approval = app.post('/approverequest/:id', (req: Request, res: Response) =
 
     const responseData = results[0];
 
-    const insertAppointmentQuery = 'INSERT INTO appointment (servcie_id, provider_id, customer_id, date, description) VALUES (?, ?, ?, ?, ?)';
+    const insertAppointmentQuery = 'INSERT INTO appointment (servcie_id, provider_id, customer_id, date, description, status,request_id) VALUES (?, ?, ?, ?, ?,?)';
     conn.query(insertAppointmentQuery, [
       responseData.servcie_id,
       responseData.provider_id,
       responseData.customer_id,
       responseData.date_request,
       responseData.description,
+      1,
+      responseData.service_requestid
+      
     ], (error, results, fields) => {
       if (error) {
         console.error('Error inserting data into appointment table:', error);
