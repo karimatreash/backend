@@ -15,6 +15,7 @@ const requests = app.get('/request/user/:id', (req: Request, res: Response) => {
   
     t1.date_request, 
     t1.description,
+    t1.status,
     
     t1.newdate ,
     t2.provider_fname, 

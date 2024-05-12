@@ -16,7 +16,7 @@ const arci_cutsomer =`SELECT
 t1.appoi_id,
 t1.date,
 t1.description,
-t1.
+t1.	request_id
 t2.provider_fname,
 t2.provider_lname, 
 t2.city,
@@ -30,7 +30,7 @@ customer t2 ON t1.customer_id = t2.customer_id
 JOIN
 service t3 ON t1.servcie_id = t3.servcie_id
 WHERE 
-t1.status = 4 AND t1.provider_id = ? 
+t1.status = 4 AND t1.customer_id = ? 
 UNION ALL 
 SELECT 
 
@@ -50,7 +50,7 @@ customer t2 ON t1.customer_id = t2.customer_id
 JOIN 
 service t3 ON t1.servcie_id = t3.servcie_id
 WHERE 
-t1.status = 4 AND t1.provider_id = ?;`
+t1.status = 4 AND t1.customer_id= ?;`
     conn.query(arci_cutsomer,[providerId,providerId],(err,result)=>{
         if(err){
             console.error(err)

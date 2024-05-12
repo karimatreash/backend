@@ -27,7 +27,7 @@ const approval = app.post('/approverequest/:id', (req: Request, res: Response) =
 
     const responseData = results[0];
 
-    const insertAppointmentQuery = 'INSERT INTO appointment (servcie_id, provider_id, customer_id, date, description, status,request_id) VALUES (?, ?, ?, ?, ?,?)';
+    const insertAppointmentQuery = 'INSERT INTO appointment (servcie_id, provider_id, customer_id, date, description, status,request_id) VALUES (?, ?, ?, ?, ?,?,?)';
     conn.query(insertAppointmentQuery, [
       responseData.servcie_id,
       responseData.provider_id,

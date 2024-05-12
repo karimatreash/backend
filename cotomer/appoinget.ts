@@ -19,7 +19,8 @@ const get_appointment = app.get('/appointment/user/:id', (req: Request, res: Res
   t1.appoi_id,
   t1.date,
   t1.description,
-  t1.status
+  t1.status,
+  t1.provider_id,
   t2.provider_fname,
   t2.provider_lname,
   t2.city,
@@ -34,7 +35,7 @@ const get_appointment = app.get('/appointment/user/:id', (req: Request, res: Res
   JOIN status t4 on t1.status = t4.id_status
   
   
-  WHERE t1.customer_id = ?`
+  WHERE t1.customer_id = ? AND status=1`
   conn.query(sql, [userId], (err, result) => {
     if (err) {
       console.error(err);
