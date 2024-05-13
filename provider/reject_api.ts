@@ -35,7 +35,7 @@ const reject = app.post('/rejectrequest/:id', (req: Request, res: Response) => {
           return res.status(500).json({ error: 'An error occurred' });
         }
 
-        res.json({ message: 'Request approved successfully' });
+        res.json({ message: 'Request Rejected successfully' });
       });
     });
   });
