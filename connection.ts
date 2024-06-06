@@ -1,6 +1,7 @@
 import mysql from 'mysql';
 import calculateAndSetRatio from './func/sumrating';
 import calculateAndSetcout from './func/coutn_request';
+import cancelOldRequest from './func/function_cancled';
 const conn = mysql.createConnection({
    host: 'localhost',
    user: 'root',
@@ -18,6 +19,8 @@ conn.connect((err) => {
    console.log('connected to database 4');
    calculateAndSetRatio();
    calculateAndSetcout();
+   cancelOldRequest()
+   
 })
 
 export {conn};

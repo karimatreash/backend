@@ -1,5 +1,5 @@
 import express from 'express';
-import provider_api from './cotomer/provider';
+import provider_api from './provider/provider';
 import apisignup from './cotomer/signupApi'
  import service_api from './service';
  import booking_Api from './cotomer/booking';
@@ -9,13 +9,11 @@ import get_apoointent from './cotomer/appoinget';
 import raiting_api from './cotomer/ratingprovider';
 import getappointment from './provider/getappointment';
 import GetRquest_provider from './provider/Get_request_provider';
-
 import new_date from './provider/SugestedNewDate';
 import verify_otp from './func/OTP';
 import loginall from './func/login_func';
 import get_arch_provider from './provider/archiv_provider';
 import signupProvider from './provider/signup_provider';
-import { rejects } from 'assert';
 import reject from './provider/reject_api';
 import getNotification from './func/notifications';
 import verify_pass from './forget_pass/verifyed_code_pass';
@@ -23,6 +21,9 @@ import ResetPass from './forget_pass/reset_password';
 import verify_email from './forget_pass/verified_code_email';
 import check_email from './forget_pass/check_email';
 import get_arch_customer from './cotomer/arciv_customer';
+import update_info from './func/updateinfo';
+import getAppointmentsForToday from './cotomer/todyappointment';
+import raiting_api_get from './cotomer/ratingprovider';
 
 
 // import Service from './moduls/serive';
@@ -51,6 +52,10 @@ app.use(verify_otp)
  app.use(verify_email)
  app.use(check_email)
  app.use(get_arch_customer)
+ app.use(update_info)
+ app.use(getAppointmentsForToday)
+ app.use(raiting_api_get)
+//  app.use(cancelOldRequests)
 const port = process.env.port||5000;
 app.listen(port, () => {
   console.log(`Server is running on port `);

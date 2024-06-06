@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const raiting_api = app.post('/raiting', async (req: Request, res: Response) => {
+const raiting_api_get = app.post('/raiting', async (req: Request, res: Response) => {
     const { reviewer_id, description, user_id, raiting_value } = req.body;
 
     
@@ -38,4 +38,4 @@ const raiting_api = app.post('/raiting', async (req: Request, res: Response) => 
     }
 });
 
-export default raiting_api;
+export default raiting_api_get;

@@ -1,6 +1,7 @@
 import express, { Response, Request } from "express";
 import { conn } from '../connection';
 import bodyParser from 'body-parser';
+import { insertNotify } from "../func/send_notification";
 
 const app = express();
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ const booking_Api = app.post('/booking', async (req: Request, res: Response) => 
         const sql = 'INSERT INTO service_request (servcie_id, provider_id, customer_id, date_request, description) VALUES (?, ?, ?, ?, ?)';
         try {
             const insertionResult = await conn.query(sql, [serviceid, providerid, customerid, date, description]);
+            insertNotify("طلب تقديم خدمة جديد", "  يوداحد العملاء حجز موعد لديك ", providerid, customerid, "booking"+providerid, "", "", "1")
             res.status(200).json({ message: "Booking successful" });
         } catch (err) {
             console.error(err);
