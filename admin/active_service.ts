@@ -3,16 +3,17 @@ import { conn } from "../connection";
 
 const app = express();
 
-const updateStatusttrue = app.post('/updateStatusById/true/:id', async (req: Request, res: Response) => {
-    const userId  = req.params.id;
+const active_status = app.post('/updateStatusById/service/active/:id', async (req: Request, res: Response) => {
+    const serivceId  = req.params.id;
 
-    if (isNaN(Number(userId))) {
+    if (isNaN(Number(serivceId))) {
         return res.status(400).json("Invalid user ID");
     }
 
     try {
-        const sql = `UPDATE service_provider SET status = 1 WHERE provider_id = ?`;
-        conn.query(sql, [userId]);
+        console.log("خن")
+        const sql = `UPDATE service SET isactive = 1 WHERE servcie_id= ?`;
+        conn.query(sql, [serivceId]);
         return res.status(200).json({message:"update done"})
     } catch (error) {
         console.error('Error:', error);
@@ -20,4 +21,4 @@ const updateStatusttrue = app.post('/updateStatusById/true/:id', async (req: Req
     }
 });
 
-export default updateStatusttrue;
+export default active_status;

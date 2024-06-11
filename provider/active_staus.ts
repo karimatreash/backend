@@ -13,7 +13,7 @@ const updateStatustoNO = app.post('/updateStatusById/:id', async (req: Request, 
     try {
         const sql = `UPDATE service_provider SET status = 0 WHERE provider_id = ?`;
         conn.query(sql, [userId]);
-        
+        return res.status(200).json({message:"update done"})
     } catch (error) {
         console.error('Error:', error);
         return res.status(500).json({ error: "Internal server error" });

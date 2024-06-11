@@ -24,6 +24,12 @@ import get_arch_customer from './cotomer/arciv_customer';
 import update_info from './func/updateinfo';
 import getAppointmentsForToday from './cotomer/todyappointment';
 import raiting_api_get from './cotomer/ratingprovider';
+import count_admin from './admin/count_adminpanel';
+import updateStatusttrue from './provider/active_status_1';
+import active_status from './admin/active_service';
+import dactive_status from './admin/deactive_service';
+import add_new_service from './admin/add_new_service';
+import delete_service from './admin/delete_serivce';
 
 
 // import Service from './moduls/serive';
@@ -55,6 +61,12 @@ app.use(verify_otp)
  app.use(update_info)
  app.use(getAppointmentsForToday)
  app.use(raiting_api_get)
+ app.use(count_admin)
+ app.use(updateStatusttrue)
+ app.use(active_status)
+ app.use(dactive_status)
+ app.use(add_new_service)
+ app.use(delete_service)
 //  app.use(cancelOldRequests)
 const port = process.env.port||5000;
 app.listen(port, () => {

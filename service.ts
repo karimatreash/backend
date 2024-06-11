@@ -8,7 +8,7 @@ const service_api =app.get('/service', (req: Request, res: Response) => {
     // });
     
     // التنفيذ
-    conn.query(`SELECT * FROM service`, (err, results) => {
+    conn.query(`SELECT * FROM service WHERE isactive=1`, (err, results) => {
         if (err) {
             console.error('Error fetching serive : ', err);
             res.status(500).send({ error: 'Error fetching service' });
