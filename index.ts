@@ -1,12 +1,12 @@
 import express from 'express';
 import provider_api from './provider/provider';
-import apisignup from './cotomer/signupApi'
+import apisignup from './customer/signupApi'
  import service_api from './service';
- import booking_Api from './cotomer/booking';
- import requests from './cotomer/requset';
+ import booking_Api from './customer/booking';
+ import requests from './customer/requset';
 import approval from './provider/approved_api';
-import get_apoointent from './cotomer/appoinget';
-import raiting_api from './cotomer/ratingprovider';
+import get_apoointent from './customer/appoinget';
+import raiting_api from './customer/ratingprovider';
 import getappointment from './provider/getappointment';
 import GetRquest_provider from './provider/Get_request_provider';
 import new_date from './provider/SugestedNewDate';
@@ -20,10 +20,10 @@ import verify_pass from './forget_pass/verifyed_code_pass';
 import ResetPass from './forget_pass/reset_password';
 import verify_email from './forget_pass/verified_code_email';
 import check_email from './forget_pass/check_email';
-import get_arch_customer from './cotomer/arciv_customer';
+import get_arch_customer from './customer/arciv_customer';
 import update_info from './func/updateinfo';
-import getAppointmentsForToday from './cotomer/todyappointment';
-import raiting_api_get from './cotomer/ratingprovider';
+import getAppointmentsForToday from './customer/todyappointment';
+import raiting_api_get from './customer/ratingprovider';
 import count_admin from './admin/count_adminpanel';
 import updateStatusttrue from './provider/active_status_1';
 import active_status from './admin/active_service';

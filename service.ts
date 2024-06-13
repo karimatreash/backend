@@ -15,6 +15,10 @@ const service_api =app.get('/service', (req: Request, res: Response) => {
             return;
 
         }
+        if(results.length==0){
+            res.status(200).json({message:"get succesful"})
+        }
+        
         res.json(results);
     });
 });

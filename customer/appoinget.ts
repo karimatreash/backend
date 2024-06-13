@@ -1,10 +1,9 @@
 import express, { Request, Response } from 'express';
-import { conn } from '../connection'; // Assuming 'connection' provides database connection
+import { conn } from '../connection'; 
 
 const app = express();
 
 const get_appointment = app.get('/appointment/user/:id', (req: Request, res: Response) => {
-  // Check if user ID exists in the URL parameters
   if (!req.params || !req.params.id) {
     return res.status(400).json({ error: 'User ID is missing in the URL' });
   }
@@ -39,14 +38,14 @@ const get_appointment = app.get('/appointment/user/:id', (req: Request, res: Res
   conn.query(sql, [userId], (err, result) => {
     if (err) {
       console.error(err);
-      return res.status(500).json({ error: 'An error occurred' }); // More specific error message if possible
+      return res.status(500).json({ error: 'An error occurred' }); 
     }
 
     if (result.length === 0) {
-      return res.status(200).json({ message: "You don't have any appointments" }); // Clearer success message
+      return res.status(200).json({ message: "You don't have any appointments" }); 
     }
 
-    res.json({appointments :result}); // Send appointment data if found
+    res.json({appointments :result}); 
   });
 });
 

@@ -57,15 +57,15 @@ const getAppointmentsForToday = app.get("/getAppointmentsForToday/:id",(req: Req
         return res.status(400).json({ error: 'Invalid user ID' });
       }
 
-    // Get current date in local time zone
+   
     const currentDate = new Date();
 
-    // Extract the year, month, and day from the current date
+    
     const year = currentDate.getFullYear();
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-indexed, so we add 1
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
     const day = currentDate.getDate().toString().padStart(2, '0');
 
-    // Construct the formatted date string
+    
     const formattedDate = `${year}-${month}-${day}`;
   
     console.log(formattedDate);

@@ -4,7 +4,6 @@ const app =express()
 const verifyapi =app.post('/verify-otp', (req, res) => {
     const { email, otp } = req.body;
   
-    // Query user table to check if OTP is valid
     const query = 'SELECT * FROM customer WHERE email = ? AND verifycode = ? ';
     conn.query(query, [email, otp], (error, results) => {
       if (error) {
@@ -12,7 +11,6 @@ const verifyapi =app.post('/verify-otp', (req, res) => {
         res.status(500).json({ message: 'Failed to verify OTP' });
       } else {
         if (results.length > 0) {
-          // OTP verification successful
           res.status(200).json({ message: 'OTP verified successfully' });
         } else {
           // OTP verification failed
