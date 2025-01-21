@@ -27,7 +27,7 @@ const check_email = app.post('/check_email', async (req: Request, res: Response)
             return res.status(500).json({ error: "server error" });
           }
           else{ 
-          res.status(200).json({ message: 'update password successful' });
+          res.status(200).json({ message: 'update email successful' });
           sendEmail(email, 'Veryfying your email', 'This is a code ' + verifycode + '  to verify your email')
             .then(() => console.log('Email sent successfully'))
             .catch((error) => console.error('Error sending email:', error));

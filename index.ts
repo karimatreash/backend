@@ -30,11 +30,16 @@ import active_status from './admin/active_service';
 import dactive_status from './admin/deactive_service';
 import add_new_service from './admin/add_new_service';
 import delete_service from './admin/delete_serivce';
+import cors from 'cors'
+import admin_service from './admin/Admin_services';
+import all_poduct from './Stor/All_pruduct';
+
 
 
 // import Service from './moduls/serive';
 
 const app = express();
+app.use(cors())
 app.use(service_api);
 app.use(provider_api)
 app.use(apisignup);
@@ -67,6 +72,10 @@ app.use(verify_otp)
  app.use(dactive_status)
  app.use(add_new_service)
  app.use(delete_service)
+ app.use(admin_service)
+ app.use(all_poduct)
+// / app.use(Product_get);
+ 
 //  app.use(cancelOldRequests)
 const port = process.env.port||5000;
 app.listen(port, () => {

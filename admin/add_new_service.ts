@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
-const add_new_service = app.post('/new_service', async (req: Request, res: Response) => {
+const add_new_service = app.post('/new-service', async (req: Request, res: Response) => {
     const { servicename, serviceicon } = req.body;
     const sql_add_service = 'INSERT INTO service (servcie_name, service_icon, isactive) VALUES(?, ?, ?)';
 

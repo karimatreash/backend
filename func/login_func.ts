@@ -195,7 +195,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const app = express();
-
+app.disable('x-powered-by');
 import bodyParser from 'body-parser';
 app.use(bodyParser.json());
 

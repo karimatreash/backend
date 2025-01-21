@@ -3,7 +3,7 @@ import { conn } from "../connection";
 
 const app = express();
 
-const delete_service = app.delete('/delete/service/:id', async (req: Request, res: Response) => {
+const delete_service = app.delete('/service/:id', async (req: Request, res: Response) => {
     const serviceId = req.params.id;
 
     if (isNaN(Number(serviceId))) {

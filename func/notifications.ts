@@ -26,6 +26,7 @@ const getNotification = app.get('/notification/:id?/:usertype',(req:Request,res:
             console.log(result)
         })
     }
+    
     else{
         conn.query(`SELECT * FROM notification WHERE provider_id = ? and userType = '1'`,(err,result)=>{
             if(err){
